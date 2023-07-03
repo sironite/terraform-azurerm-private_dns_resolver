@@ -27,8 +27,11 @@ module "private_dns_resolver" {
 
 | Name | Source | Version |
 |------|--------|---------|
-| private\_dns\_resolver\_inbound\_endpoint | ./module/azurerm_private_dns_resolver_inbound_endpoint | n/a |
-| private\_dns\_resolver\_outbound\_endpoint | ./module/azurerm_private_dns_resolver_outbound_endpoint | n/a |
+| private\_dns\_resolver\_dns\_forwarding\_ruleset | ./modules/azurerm_private_dns_resolver_dns_forwarding_ruleset | n/a |
+| private\_dns\_resolver\_forwarding\_rule | ./modules/azurerm_private_dns_resolver_forwarding_rule | n/a |
+| private\_dns\_resolver\_inbound\_endpoint | ./modules/azurerm_private_dns_resolver_inbound_endpoint | n/a |
+| private\_dns\_resolver\_outbound\_endpoint | ./modules/azurerm_private_dns_resolver_outbound_endpoint | n/a |
+| private\_dns\_resolver\_virtual\_network\_link | ./modules/azurerm_private_dns_resolver_virtual_network_link | n/a |
 
 ## Resources
 
@@ -40,25 +43,27 @@ module "private_dns_resolver" {
 
 | Name | Description | Type | Required |
 |------|-------------|------|:--------:|
-| dns\_resolver\_inbound\_endpoint\_name | The name of the private DNS resolver inbound endpoint. | `string` | yes |
 | dns\_resolver\_name | The name of the private DNS resolver. | `string` | yes |
-| dns\_resolver\_outbound\_endpoint\_name | The name of the private DNS resolver outbound endpoint. | `string` | yes |
 | location | The location of the private DNS resolver. | `string` | yes |
 | resource\_group\_name | The name of the resource group in which to create the private DNS resolver. | `string` | yes |
-| subnet\_id | The ID of the subnet in which to create the private DNS resolver inbound endpoint. | `string` | yes |
 | virtual\_network\_id | The ID of the virtual network in which to create the private DNS resolver. | `string` | yes |
+| dns\_resolver\_dns\_forwarding\_ruleset\_name | The name of the private DNS resolver DNS forwarding ruleset. | `string` | no |
+| dns\_resolver\_inbound\_endpoint\_name | The name of the private DNS resolver inbound endpoint. | `string` | no |
+| dns\_resolver\_outbound\_endpoint\_name | The name of the private DNS resolver outbound endpoint. | `string` | no |
+| dns\_resolver\_virtual\_network\_link\_name | The name of the private DNS resolver virtual network link. | `string` | no |
+| enabled\_dns\_forwarding\_ruleset | deploy dns forwarding ruleset | `bool` | no |
 | enabled\_inbound\_endpoint | deploy inbound endpoint | `bool` | no |
 | enabled\_outbound\_endpoint | deploy outbound endpoint | `bool` | no |
+| forwarding\_rule | n/a | <pre>map(object({<br>    enabled = bool<br>    dns_resolver_forwarding_rule_name = string<br>    domain_name = string<br>    ip_address = string<br>    port = number<br>  }))</pre> | no |
+| subnet\_id\_inbound\_endpoint | The ID of the subnet in which to create the private DNS resolver inbound endpoint. | `string` | no |
+| subnet\_id\_outbound\_endpoint | The ID of the subnet in which to create the private DNS resolver outbound endpoint. | `string` | no |
+| tags | A mapping of tags to assign to the resource. | `map(string)` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| dns\_resolver\_inbound\_endpoint\_id | The ID of the private DNS resolver inbound endpoint. |
-| dns\_resolver\_inbound\_endpoint\_name | The name of the private DNS resolver inbound endpoint. |
-| private\_dns\_resolver\_fqdn | The FQDN of the private DNS resolver. |
 | private\_dns\_resolver\_id | The ID of the private DNS resolver. |
-| private\_dns\_resolver\_ip\_addresses | The IP addresses of the private DNS resolver. |
 
 ## Related documentation
 <!-- END_TF_DOCS -->
