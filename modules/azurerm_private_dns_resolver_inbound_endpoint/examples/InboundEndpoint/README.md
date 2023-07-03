@@ -23,7 +23,7 @@ module "private_dns_resolver" {
 
   enabled_inbound_endpoint           = true
   dns_resolver_inbound_endpoint_name = "my-dns-resolver-inbound-endpoint"
-  subnet_id                          = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.Network/virtualNetworks/my-vnet/subnets/my-subnet"
+  subnet_id_inbound_endpoint         = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.Network/virtualNetworks/my-vnet/subnets/my-subnet"
 }
 
 ```

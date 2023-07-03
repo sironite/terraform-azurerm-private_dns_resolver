@@ -19,7 +19,7 @@ variable "private_ip_allocation_method" {
   default     = "Dynamic"
 }
 
-variable "subnet_id" {
+variable "subnet_id_inbound_endpoints" {
   type        = string
   description = "The ID of the subnet in which to create the inbound endpoint."
 }

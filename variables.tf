@@ -17,6 +17,12 @@ variable "virtual_network_id" {
   type        = string    
 }
 
+variable "tags" {
+  description = "A mapping of tags to assign to the resource."
+  type        = map(string)
+  default     = {}  
+}
+
 variable "enabled_inbound_endpoint" {
   description = "deploy inbound endpoint"
   type        = bool
@@ -25,12 +31,14 @@ variable "enabled_inbound_endpoint" {
 
 variable "dns_resolver_inbound_endpoint_name" {
   description = "The name of the private DNS resolver inbound endpoint."
-  type        = string    
+  type        = string 
+  default    = ""   
 }
 
-variable "subnet_id" {
+variable "subnet_id_inbound_endpoint" {
   description = "The ID of the subnet in which to create the private DNS resolver inbound endpoint."
-  type        = string    
+  type        = string 
+  default = ""   
 }
 
 variable "enabled_outbound_endpoint" {
@@ -41,5 +49,12 @@ variable "enabled_outbound_endpoint" {
 
 variable "dns_resolver_outbound_endpoint_name" {
   description = "The name of the private DNS resolver outbound endpoint."
-  type        = string     
+  type        = string  
+  default     = ""   
+}
+
+variable "subnet_id_outbound_endpoint" {
+  description = "The ID of the subnet in which to create the private DNS resolver outbound endpoint."
+  type        = string   
+  default = ""
 }

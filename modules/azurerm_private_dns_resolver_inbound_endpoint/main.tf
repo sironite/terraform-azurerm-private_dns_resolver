@@ -6,7 +6,7 @@ resource "azurerm_private_dns_resolver_inbound_endpoint" "this" {
 
   ip_configurations {
     private_ip_allocation_method = var.private_ip_allocation_method
-    subnet_id                    = var.subnet_id
+    subnet_id                    = var.subnet_id_inbound_endpoint
   }
 
   tags = var.tags

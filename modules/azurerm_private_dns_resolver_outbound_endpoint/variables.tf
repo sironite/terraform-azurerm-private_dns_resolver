@@ -13,7 +13,7 @@ variable "private_dns_resolver_id" {
   description = "The ID of the private DNS resolver to associate with the inbound endpoint."
 }
 
-variable "subnet_id" {
+variable "subnet_id_outbound_endpoint" {
   type        = string
   description = "The ID of the subnet in which to create the inbound endpoint."
 }
