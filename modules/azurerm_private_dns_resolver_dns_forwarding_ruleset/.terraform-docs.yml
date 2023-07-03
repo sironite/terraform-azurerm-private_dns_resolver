@@ -8,11 +8,10 @@ content: |-
 
   # Usage - Module
 
-  ##Private DNS Resolver
+  ## Private DNS Resolver Dns Forwarding Ruleset
   ```hcl
-  {{ include "examples/PrivateDNSResolver/main.tf" }}
+  {{ include "examples/ForwardingRuleset/main.tf" }}
   ```
-
   {{ .Providers }}
 
   {{ .Modules }}
@@ -25,9 +24,7 @@ content: |-
 
   {{ .Footer }}
 
-recursive:
-  enabled: true
-
+  
 output:
   file: README.md
   mode: inject
