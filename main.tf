@@ -37,3 +37,16 @@ module "private_dns_resolver_outbound_endpoint" {
   tags = var.tags
 }
 
+
+module "private_dns_resolver_dns_forwarding_ruleset" {
+  source = "./modules/azurerm_private_dns_resolver_dns_forwarding_ruleset"
+
+  count = var.enabled_dns_forwarding_ruleset ? 1 : 0
+
+  dns_resolver_dns_forwarding_ruleset_name = var.dns_resolver_dns_forwarding_ruleset_name
+  dns_resolver_outbound_endpoint_id        = module.dns_resolver_outbound_endpoint_id.id
+  location                                 = var.location
+
+  tags = var.tags
+}
+
