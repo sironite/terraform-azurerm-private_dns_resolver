@@ -16,10 +16,24 @@ module "private_dns_resolver_inbound_endpoint" {
   count = var.enabled_inbound_endpoint ? 1 : 0
 
   dns_resolver_inbound_endpoint_name = var.dns_resolver_inbound_endpoint_name
-  resource_group_name                = var.resource_group_name
+  location                           = var.location
   private_dns_resolver_id            = azurerm_private_dns_resolver.this.id
   subnet_id                          = var.subnet_id
 
   tags = var.tags
 
 }
+
+module "private_dns_resolver_outbound_endpoint" {
+  source = "./module/azurerm_private_dns_resolver_outbound_endpoint"
+
+  count = var.enabled_outbound_endpoint ? 1 : 0
+
+  dns_resolver_outbound_endpoint_name = var.dns_resolver_outbound_endpoint_name
+  private_dns_resolver_id             = azurerm_private_dns_resolver.this.id
+  location                            = var.location
+  subnet_id                           = var.subnet_id
+
+  tags = var.tags
+}
+

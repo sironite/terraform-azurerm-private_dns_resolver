@@ -1,34 +1,31 @@
-variable "dns_resolver_name" {
-  description = "The name of the private DNS resolver."
+variable "dns_resolver_inbound_endpoint_name" {
   type        = string
-}
-variable "resource_group_name" {
-  description = "The name of the resource group in which to create the private DNS resolver."
-  type        = string
+  description = "The name of the inbound endpoint for the private DNS resolver."
 }
 
 variable "location" {
-  description = "The location of the private DNS resolver."
   type        = string
+  description = "The location of the inbound endpoint for the private DNS resolver."  
 }
 
-variable "virtual_network_id" {
-  description = "The ID of the virtual network in which to create the private DNS resolver."
+variable "private_dns_resolver_id" {
   type        = string
+  description = "The ID of the private DNS resolver to associate with the inbound endpoint."
 }
 
-variable "enabled_inbound_endpoint" {
-  description = "deploy inbound endpoint"
-  type        = bool
-  default     = false
-}
-
-variable "dns_resolver_inbound_endpoint_name" {
-  description = "The name of the private DNS resolver inbound endpoint."
+variable "private_ip_allocation_method" {
   type        = string
+  description = "The allocation method for the private IP address of the inbound endpoint."
+  default     = "Dynamic"
 }
 
 variable "subnet_id" {
-  description = "The ID of the subnet in which to create the private DNS resolver inbound endpoint."
   type        = string
+  description = "The ID of the subnet in which to create the inbound endpoint."
+}
+
+variable "tags" {
+  type        = map(string)
+  description = "A map of tags to apply to the inbound endpoint."
+  default     = {}
 }
