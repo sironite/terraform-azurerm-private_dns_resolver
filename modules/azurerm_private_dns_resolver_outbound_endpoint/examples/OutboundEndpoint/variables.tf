@@ -25,5 +25,5 @@ variable "enabled_outbound_endpoint" {
 
 variable "dns_resolver_outbound_endpoint_name" {
   description = "The name of the private DNS resolver outbound endpoint."
-  type        = string     
+  type        = string
 }

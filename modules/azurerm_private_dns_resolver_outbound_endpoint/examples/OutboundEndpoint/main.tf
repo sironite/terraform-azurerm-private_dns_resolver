@@ -11,6 +11,6 @@ module "private_dns_resolver" {
   dns_resolver_outbound_endpoint_name = "my-dns-resolver-outbound-endpoint"
   subnet_id_outbound_endpoint         = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.Network/virtualNetworks/my-vnet/subnets/my-subnet"
 
-  
+
 
 }

@@ -44,9 +44,33 @@ module "private_dns_resolver_dns_forwarding_ruleset" {
   count = var.enabled_dns_forwarding_ruleset ? 1 : 0
 
   dns_resolver_dns_forwarding_ruleset_name = var.dns_resolver_dns_forwarding_ruleset_name
-  dns_resolver_outbound_endpoint_id        = module.dns_resolver_outbound_endpoint_id.id
+  dns_resolver_outbound_endpoint_id        = [module.private_dns_resolver_outbound_endpoint.0.outbound_endpoint_id]
   location                                 = var.location
-
+  resource_group_name = var.resource_group_name
   tags = var.tags
+}
+
+module "private_dns_resolver_forwarding_rule" {
+  source = "./modules/azurerm_private_dns_resolver_forwarding_rule"
+
+  for_each = { for k, v in var.forwarding_rule : k => v if v.enabled && length(keys(module.private_dns_resolver_outbound_endpoint.0)) > 0 }
+
+  dns_resolver_forwarding_rule_name = each.value.dns_resolver_forwarding_rule_name
+  dns_forwarding_ruleset_id         = module.private_dns_resolver_dns_forwarding_ruleset.0.dns_forwarding_ruleset_id
+  domain_name                       = each.value.domain_name
+  enabled                           = each.value.enabled
+  ip_address                        = each.value.ip_address
+  port                              = each.value.port
+  
+}
+
+module "private_dns_resolver_virtual_network_link" {
+  source = "./modules/azurerm_private_dns_resolver_virtual_network_link"
+
+  count = var.enabled_dns_forwarding_ruleset ? 1 : 0
+
+  dns_resolver_virtual_network_link_name = var.dns_resolver_virtual_network_link_name
+  dns_forwarding_ruleset_id              = module.private_dns_resolver_dns_forwarding_ruleset.0.dns_forwarding_ruleset_id
+  virtual_network_id                     = var.virtual_network_id
 }
 

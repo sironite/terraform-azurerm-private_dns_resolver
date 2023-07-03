@@ -5,7 +5,7 @@ variable "dns_resolver_outbound_endpoint_name" {
 
 variable "location" {
   type        = string
-  description = "The location of the inbound endpoint for the private DNS resolver."  
+  description = "The location of the inbound endpoint for the private DNS resolver."
 }
 
 variable "private_dns_resolver_id" {
