@@ -8,11 +8,10 @@ content: |-
 
   # Usage - Module
 
-  ##Private DNS Resolver
+  ## Private DNS resolver inbound endpoint
   ```hcl
-  {{ include "examples/PrivateDNSResolver/main.tf" }}
+  {{ include "examples/InboundEndpoint/main.tf" }}
   ```
-
   {{ .Providers }}
 
   {{ .Modules }}
@@ -25,6 +24,9 @@ content: |-
 
   {{ .Footer }}
 
+recursive:
+  enabled: true
+  
 output:
   file: README.md
   mode: inject
