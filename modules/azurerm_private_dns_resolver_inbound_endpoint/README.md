@@ -43,8 +43,8 @@ No modules.
 | Name | Description | Type | Required |
 |------|-------------|------|:--------:|
 | dns\_resolver\_inbound\_endpoint\_name | The name of the inbound endpoint for the private DNS resolver. | `string` | yes |
+| location | The location of the inbound endpoint for the private DNS resolver. | `string` | yes |
 | private\_dns\_resolver\_id | The ID of the private DNS resolver to associate with the inbound endpoint. | `string` | yes |
-| resource\_group\_name | The name of the resource group in which to create the inbound endpoint. | `string` | yes |
 | subnet\_id | The ID of the subnet in which to create the inbound endpoint. | `string` | yes |
 | private\_ip\_allocation\_method | The allocation method for the private IP address of the inbound endpoint. | `string` | no |
 | tags | A map of tags to apply to the inbound endpoint. | `map(string)` | no |
