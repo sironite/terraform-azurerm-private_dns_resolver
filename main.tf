@@ -51,9 +51,9 @@ module "private_dns_resolver_dns_forwarding_ruleset" {
 }
 
 module "private_dns_resolver_forwarding_rule" {
-  source = "./modules/azurerm_private_dns_resolver_forwarding_rule"
+  source = "./modules/azurerm_private_dns_resolver_forwarding_rule"    
 
-  for_each = { for k, v in var.forwarding_rule : k => v if v.enabled && length(keys(module.private_dns_resolver_outbound_endpoint.0)) > 0 }
+  for_each = { for k, v in var.forwarding_rule : k => v if v.enabled && length(module.private_dns_resolver_outbound_endpoint) > 0  }
 
   dns_resolver_forwarding_rule_name = each.value.dns_resolver_forwarding_rule_name
   dns_forwarding_ruleset_id         = module.private_dns_resolver_dns_forwarding_ruleset.0.dns_forwarding_ruleset_id
